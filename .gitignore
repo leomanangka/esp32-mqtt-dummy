@@ -1,0 +1,10 @@
+.pio
+.clang_complete
+.gcc-flags.json
+.ccls
+.cache
+test
+lib
+Makefile
+sdkconfig.esp32dev.old
+compile_commands.json
