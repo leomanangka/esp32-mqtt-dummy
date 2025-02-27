@@ -1,0 +1,27 @@
+menu "MQTT configuration"
+
+  config ESP_MQTT_BROKER_URL
+    string "MQTT Broker URL"
+    default ""
+    help
+      URL of the broker to connect to.
+
+  config ESP_MQTT_BROKER_PORT
+    int "MQTT Broker Port"
+    default 1883
+    help
+      Port of the broker to connect to.
+
+  config ESP_MQTT_AUTH_USERNAME
+    string "Authentication username"
+    default ""
+    help
+      MQTT username for authentication.
+
+  config ESP_MQTT_AUTH_PASSWORD
+    string "Authentication password"
+    default ""
+    help
+      Password authentication.
+
+endmenu
