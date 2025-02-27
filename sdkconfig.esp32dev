@@ -404,6 +404,15 @@ CONFIG_PARTITION_TABLE_MD5=y
 # end of Partition Table
 
 #
+# MQTT configuration
+#
+CONFIG_ESP_MQTT_BROKER_URL=""
+CONFIG_ESP_MQTT_BROKER_PORT=1883
+CONFIG_ESP_MQTT_AUTH_USERNAME=""
+CONFIG_ESP_MQTT_AUTH_PASSWORD=""
+# end of MQTT configuration
+
+#
 # WiFi configuration
 #
 
