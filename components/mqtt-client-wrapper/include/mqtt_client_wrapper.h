@@ -5,6 +5,7 @@ typedef struct {
   const char *pub_topic;
   const char *sub_topic;
   char *msg;
+  int interval;
 } mqtt_topic_t;
 
 void mqtt_start(mqtt_topic_t *mqtt_topic);
