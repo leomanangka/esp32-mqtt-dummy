@@ -1,10 +1,10 @@
+#include "network_wrapper.h"
 #include "esp_event.h"
 #include "esp_log.h"
 #include "esp_mac.h"
 #include "esp_wifi.h"
 #include "freertos/event_groups.h"
 #include "nvs_flash.h"
-#include <stdbool.h>
 #include <string.h>
 
 #if CONFIG_ESP_WPA3_SAE_PWE_HUNT_AND_PECK
@@ -184,5 +184,18 @@ void wifi_start(void) {
              CONFIG_ESP_WIFI_STA_SSID, CONFIG_ESP_WIFI_STA_PASSWORD);
   } else {
     ESP_LOGE(WIFI_STA_TAG, "UNEXPECTED EVENT");
+  }
+}
+
+bool is_sta_connected(void) {
+  wifi_ap_record_t ap_info;
+  esp_err_t err = esp_wifi_sta_get_ap_info(&ap_info);
+  if (err == ESP_OK) {
+    ESP_LOGI(WIFI_STA_TAG, "The station is connected to AP SSID: %s",
+             ap_info.ssid);
+    return true;
+  } else {
+    ESP_LOGE(WIFI_STA_TAG, "The station not connected to any AP");
+    return false;
   }
 }
