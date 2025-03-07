@@ -9,6 +9,6 @@ typedef struct {
 } mqtt_topic_t;
 
 void mqtt_start(mqtt_topic_t *mqtt_topic);
-void mqtt_pusblish_task(void *args);
+void mqtt_pusblish(mqtt_topic_t *mqtt_topic);
 
 #endif

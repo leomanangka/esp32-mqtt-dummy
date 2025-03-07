@@ -77,17 +77,9 @@ void mqtt_start(mqtt_topic_t *mqtt_topic) {
   esp_mqtt_client_start(client);
 }
 
-void mqtt_pusblish_task(void *args) {
-  mqtt_topic_t *mqtt_topic = (mqtt_topic_t *)args;
-  static int interval = 1000;
-  if (mqtt_topic->interval != 0) {
-    interval = interval * mqtt_topic->interval;
-  }
-  while (true) {
-    if (MQTT_CONNECTED_FLAG) {
-      esp_mqtt_client_publish(client, mqtt_topic->pub_topic, mqtt_topic->msg, 0,
-                              1, 0);
-      vTaskDelay(interval / portTICK_PERIOD_MS);
-    }
+void mqtt_pusblish(mqtt_topic_t *mqtt_topic) {
+  if (MQTT_CONNECTED_FLAG) {
+    esp_mqtt_client_publish(client, mqtt_topic->pub_topic, mqtt_topic->msg, 0,
+                            1, 0);
   }
 }
