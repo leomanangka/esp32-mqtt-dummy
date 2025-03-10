@@ -6,7 +6,7 @@
 #include <string.h>
 
 static const char *MQTT_TAG = "MQTT";
-int32_t MQTT_CONNECTED_FLAG = 0;
+bool MQTT_CONNECTED_FLAG = false;
 
 static void log_error_if_nonzero(const char *message, int error_code) {
   if (error_code != 0) {
@@ -23,11 +23,11 @@ static void event_handler(void *args, esp_event_base_t event_base,
   case MQTT_EVENT_CONNECTED:
     ESP_LOGI(MQTT_TAG, "MQTT CONNECTED");
     esp_mqtt_client_subscribe(client, mqtt_topic->sub_topic, 1);
-    MQTT_CONNECTED_FLAG = 1;
+    MQTT_CONNECTED_FLAG = true;
     break;
   case MQTT_EVENT_DISCONNECTED:
     ESP_LOGI(MQTT_TAG, "MQTT DISCONNECTED");
-    MQTT_CONNECTED_FLAG = 0;
+    MQTT_CONNECTED_FLAG = false;
     break;
   case MQTT_EVENT_SUBSCRIBED:
     ESP_LOGI(MQTT_TAG, "MQTT SUBSCRIBE, msg_id=%d", event->msg_id);

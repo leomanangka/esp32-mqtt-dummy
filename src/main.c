@@ -31,18 +31,17 @@ static void publish_task(void *arg) {
     gpio_set_level(BUILT_IN_LED, 0);
     vTaskDelay(2000 / portTICK_PERIOD_MS);
     float temperature_rng = rand_number(-40, 80);
-    char temperature[64];
+    char temperature[128];
     snprintf(temperature, sizeof(temperature), "%.2f", temperature_rng);
 
     float humidity_rng = rand_number(0, 100);
-    char humidity[64];
+    char humidity[128];
     snprintf(humidity, sizeof(humidity), "%.2f", humidity_rng);
 
     float water_level_rng = rand_number(0, 100);
-    char waterl_level[64];
+    char waterl_level[128];
     snprintf(waterl_level, sizeof(waterl_level), "%.2f", water_level_rng);
 
-    cJSON_AddStringToObject(json_data, "MCU", "esp32");
     cJSON_AddNumberToObject(json_data, "temperature", atof(temperature));
     cJSON_AddNumberToObject(json_data, "humidity", atof(humidity));
     cJSON_AddNumberToObject(json_data, "water_level", atoi(waterl_level));
@@ -69,6 +68,6 @@ void app_main() {
   vTaskDelay(2000 / portTICK_PERIOD_MS);
   if (is_sta_connected()) {
     mqtt_start(&mqtt_topic);
-    xTaskCreate(publish_task, "Publish Task", 1024 * 2, &mqtt_topic, 1, NULL);
+    xTaskCreate(publish_task, "Publish Task", 2048 * 2, &mqtt_topic, 1, NULL);
   }
 }
