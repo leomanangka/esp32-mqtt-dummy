@@ -1,0 +1,6 @@
+[submodule "components/esp32-mqtt-client-wrapper"]
+	path = components/esp32-mqtt-client-wrapper
+	url = https://github.com/leomanangka/esp32-mqtt-client-wrapper.git
+[submodule "components/esp32-network-wrapper"]
+	path = components/esp32-network-wrapper
+	url = https://github.com/leomanangka/esp32-network-wrapper.git
